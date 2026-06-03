@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan serve:*)",
+      "Bash(php artisan:*)",
+      "Bash(tree:*)",
+      "Bash(npm run build:*)",
+      "Bash(curl:*)",
+      "Bash(npm run dev:*)",
+      "Bash(php -v:*)",
+      "Bash(composer dev:*)",
+      "Bash(chmod +x \"/Users/ekvith/Downloads/slt-whatsapp-demo 2/node_modules/.bin/\"*)"
+    ]
+  }
+}

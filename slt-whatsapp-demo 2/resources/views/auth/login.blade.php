@@ -35,12 +35,6 @@
                 <input id="remember_me" type="checkbox" class="rounded bg-white/5 border-white/10 text-slt-primary focus:ring-slt-primary" name="remember">
                 <span class="ms-2 text-sm text-slt-muted">{{ __('Remember me') }}</span>
             </label>
-
-            @if (Route::has('password.request'))
-                <a class="text-sm text-slt-info hover:text-slt-info/80" href="{{ route('password.request') }}">
-                    {{ __('Forgot password?') }}
-                </a>
-            @endif
         </div>
 
         <button type="submit" class="w-full py-3 rounded-xl bg-slt-accent text-white font-medium hover:opacity-90 transition-all">
@@ -58,4 +52,16 @@
             <a href="{{ route('superadmin.login') }}" class="text-slt-info hover:text-slt-info/80">Super Admin Login</a>
         </p>
     </form>
+
+    <!-- Script to Show/Hide Password using Remember Me Checkbox -->
+    <script>
+        document.getElementById('remember_me').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            if (this.checked) {
+                passwordInput.type = 'text'; // Show Password
+            } else {
+                passwordInput.type = 'password'; // Hide Password
+            }
+        });
+    </script>
 </x-guest-layout>

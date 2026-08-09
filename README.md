@@ -50,7 +50,6 @@ It includes:
 
 - email and password login
 - remember-me support
-- forgot-password link
 - secure access before entering the chat workspace
 
 <p align="center">

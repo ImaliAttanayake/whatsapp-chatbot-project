@@ -17,3 +17,5 @@ Schedule::command('whatsapp:sync-contacts', [
 ])
     ->withoutOverlapping(15)
     ->everyMinute();
+
+Schedule::command('whatsapp:reassign-inactive-chats')->everyFiveMinutes();

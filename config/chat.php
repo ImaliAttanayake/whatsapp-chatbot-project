@@ -21,6 +21,10 @@ return [
             'human agent,live agent,talk to human,real person,need human,speak to agent'
         ))
     ))),
+    // Hand each new incoming chat to a single admin instead of showing it to everyone
+    'auto_assign' => filter_var(env('CHAT_AUTO_ASSIGN', true), FILTER_VALIDATE_BOOLEAN),
+    // An admin counts as online (assignable) if they pinged within this window (minutes)
+    'online_window_minutes' => (int) env('CHAT_ONLINE_WINDOW_MINUTES', 5),
     // A recurring error is marked active if seen within this window (minutes)
     'error_active_window_minutes' => (int) env('CHAT_ERROR_ACTIVE_WINDOW_MINUTES', 5),
 ];

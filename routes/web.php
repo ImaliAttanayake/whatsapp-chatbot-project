@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChatApiController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatAssignmentController;
 use App\Http\Controllers\ChatLockController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LogController;
@@ -33,29 +34,40 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/chats/list', [ChatController::class, 'list'])->name('chats.list');
     Route::get('/chats/{contact}', [ChatController::class, 'show'])->name('chats.show');
 
+    // Chat ownership (transfer / claim)
+    Route::post('/chats/{contact}/assign', [ChatAssignmentController::class, 'update'])
+        ->middleware('chat.visible')
+        ->name('chats.assign');
+
+    Route::post('/chats/{contact}/claim', [ChatAssignmentController::class, 'claim'])
+        ->name('chats.claim');
+
     // Contacts
     Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
     Route::put('/contacts/{contact}', [ContactController::class, 'update'])->name('contacts.update');
     Route::post('/contacts/sync-recent', [ContactController::class, 'syncRecent'])->name('contacts.syncRecent');
 
     // JSON endpoints
-    Route::get('/chats/{contact}/messages', [ChatApiController::class, 'messages'])->name('chats.messages');
-    Route::post('/chats/{contact}/send', [ChatApiController::class, 'send'])->name('chats.send');
-    Route::post('/chats/{contact}/sync', [ChatApiController::class, 'sync'])->name('chats.sync');
-    Route::post('/chats/{contact}/read', [ChatApiController::class, 'markRead'])->name('chats.read');
+    Route::get('/chats/{contact}/messages', [ChatApiController::class, 'messages'])->middleware('chat.visible')->name('chats.messages');
+    Route::post('/chats/{contact}/send', [ChatApiController::class, 'send'])->middleware('chat.visible')->name('chats.send');
+    Route::post('/chats/{contact}/sync', [ChatApiController::class, 'sync'])->middleware('chat.visible')->name('chats.sync');
+    Route::post('/chats/{contact}/read', [ChatApiController::class, 'markRead'])->middleware('chat.visible')->name('chats.read');
     Route::post('/chats/sync-all', [ChatApiController::class, 'syncAll'])->name('chats.syncAll');
 
     // Chat locking
-    Route::get('/chats/{contact}/lock', [ChatLockController::class, 'status'])
-        ->name('chats.lock.status');
+    Route::middleware('chat.visible')->group(function () {
+        Route::get('/chats/{contact}/lock', [ChatLockController::class, 'status'])
+            ->name('chats.lock.status');
 
-    Route::post('/chats/{contact}/lock/acquire', [ChatLockController::class, 'acquire'])
-        ->name('chats.lock.acquire');
+        Route::post('/chats/{contact}/lock/acquire', [ChatLockController::class, 'acquire'])
+            ->name('chats.lock.acquire');
 
-    Route::post('/chats/{contact}/lock/release', [ChatLockController::class, 'release'])
-        ->name('chats.lock.release');
+        Route::post('/chats/{contact}/lock/release', [ChatLockController::class, 'release'])
+            ->name('chats.lock.release');
+    });
 
     // Human handoff
+    Route::middleware('chat.visible')->group(function () {
     Route::post('/chats/{contact}/handoff/takeover', [ChatApiController::class, 'takeoverHandoff'])
         ->name('chats.handoff.takeover');
 
@@ -64,6 +76,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/chats/{contact}/handoff/reset', [ChatApiController::class, 'resetHandoff'])
         ->name('chats.handoff.reset');
+    });
 
     // Logs
     Route::get('/logs', [LogController::class, 'index'])->name('logs.index');

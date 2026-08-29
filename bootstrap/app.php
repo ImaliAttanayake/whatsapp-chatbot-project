@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'superadmin' => \App\Http\Middleware\SuperAdminMiddleware::class,
+            'chat.visible' => \App\Http\Middleware\EnsureChatIsVisibleToUser::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

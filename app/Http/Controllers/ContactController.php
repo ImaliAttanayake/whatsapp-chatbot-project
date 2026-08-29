@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Services\RoundRobinAssignmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +13,7 @@ class ContactController extends Controller
     private const SYNC_RECENT_FALLBACK_LIMIT = 40;
     private const SYNC_RECENT_MAX_LIMIT = 200;
 
-    public function store(Request $request)
+    public function store(Request $request, RoundRobinAssignmentService $assignment)
     {
         $data = $request->validate([
             'name' => ['nullable','string','max:80'],
@@ -26,10 +27,14 @@ class ContactController extends Controller
             $data['mobile'] = '94' . ltrim($data['mobile'], '0');
         }
 
-        Contact::updateOrCreate(
+        $contact = Contact::updateOrCreate(
             ['mobile' => $data['mobile']],
             ['name' => $data['name'] ?: $data['mobile']]
         );
+
+        if ($contact->wasRecentlyCreated) {
+            $assignment->assignIfUnassigned($contact);
+        }
 
         return redirect()->route('chats.index')->with('status', 'Contact saved.');
     }

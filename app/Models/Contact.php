@@ -28,6 +28,8 @@ class Contact extends Model
         'human_handoff_message_preview',
         'human_handoff_assigned_user_id',
         'human_handoff_assigned_at',
+        'assigned_admin_id',
+        'assigned_at',
         'locked_by_user_id',
         'locked_at',
     ];
@@ -41,6 +43,7 @@ class Contact extends Model
         'bot_paused' => 'boolean',
         'human_handoff_requested_at' => 'datetime',
         'human_handoff_assigned_at' => 'datetime',
+        'assigned_at' => 'datetime',
         'locked_at' => 'datetime',
     ];
 
@@ -100,6 +103,11 @@ class Contact extends Model
     public function lockedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'locked_by_user_id');
+    }
+
+    public function assignedAdmin(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_admin_id');
     }
 
     public function humanHandoffAssignedTo(): BelongsTo

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Contact;
+use App\Services\ChatAssignmentService;
 use App\Services\ChatConversationService;
 use App\Services\SltWhatsappClient;
 use Illuminate\Console\Command;
@@ -14,7 +15,11 @@ class WhatsappSyncContacts extends Command
     protected $signature = 'whatsapp:sync-contacts {--limit=40}';
     protected $description = 'Sync the most-recent active mobile numbers into contacts table';
 
-    public function handle(SltWhatsappClient $client, ChatConversationService $conversation): int
+    public function handle(
+        SltWhatsappClient $client,
+        ChatConversationService $conversation,
+        ChatAssignmentService $assignments
+    ): int
     {
         $limit = max(1, (int) $this->option('limit'));
         $messageLimit = max(1, (int) config('chat.state_sync_message_limit', 15));
@@ -67,6 +72,12 @@ class WhatsappSyncContacts extends Command
             }
 
             $this->syncConversationState($contact, $client, $conversation, $messageLimit, $cooldownSeconds);
+
+            // A chat with an incoming message belongs to one admin, so the same
+            // message does not land in every admin's inbox at once.
+            if ($contact->last_inbound_message_at && !$contact->assigned_admin_id) {
+                $assignments->autoAssign($contact);
+            }
         }
 
         Log::info('Recent contacts synced', [

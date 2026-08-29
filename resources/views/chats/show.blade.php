@@ -80,6 +80,14 @@
                   </svg>
                   {{ $contact->mobile }}
                 </div>
+                <div class="mt-0.5 text-[11px] truncate"
+                     :class="assignment.assigned_to_me ? 'text-slt-accent' : 'text-slt-muted'">
+                  <span x-show="assignment.assigned_to_id"
+                        x-text="assignment.assigned_to_me
+                          ? 'Assigned to you'
+                          : 'Assigned to ' + assignment.assigned_to_name"></span>
+                  <span x-show="!assignment.assigned_to_id">Unassigned &middot; in the shared inbox</span>
+                </div>
               </div>
             </div>
 
@@ -108,6 +116,45 @@
                 </svg>
                 <span x-text="lock.locked_by_me ? 'Chat Locked by You' : (lock.locked ? 'Locked' : 'Take Chat')"></span>
               </button>
+
+              <!-- Transfer / Release Chat -->
+              <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                <button @click="open = !open"
+                  class="px-3 py-2 rounded-xl border border-white/10 text-slt-muted hover:text-white hover:bg-white/5 text-sm flex items-center gap-2 whitespace-nowrap transition-all"
+                  :disabled="assignmentSaving">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                  Transfer
+                </button>
+
+                <div x-show="open" x-cloak x-transition
+                     class="absolute right-0 z-30 mt-2 w-60 rounded-xl border border-white/10 bg-slt-ink shadow-xl p-2">
+                  <div class="px-2 py-1 text-[11px] uppercase tracking-wide text-slt-muted">Hand this chat to</div>
+
+                  @foreach($assignableAdmins as $admin)
+                    <button
+                      @click="assignChat({{ $admin->id }}); open = false"
+                      class="w-full text-left px-2 py-2 rounded-lg text-sm hover:bg-white/5 flex items-center justify-between gap-2"
+                      :class="assignment.assigned_to_id === {{ $admin->id }} ? 'text-slt-accent' : 'text-white'">
+                      <span class="truncate">
+                        {{ $admin->name }}@if($admin->id === auth()->id()) <span class="text-slt-muted">(you)</span>@endif
+                      </span>
+                      @if($admin->is_online)
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0" title="Online"></span>
+                      @else
+                        <span class="w-2 h-2 rounded-full bg-white/20 flex-shrink-0" title="Offline"></span>
+                      @endif
+                    </button>
+                  @endforeach
+
+                  <div class="my-1 border-t border-white/10"></div>
+                  <button @click="assignChat(null); open = false"
+                    class="w-full text-left px-2 py-2 rounded-lg text-sm text-slt-muted hover:bg-white/5 hover:text-white">
+                    Release to shared inbox
+                  </button>
+                </div>
+              </div>
 
               <!-- Sync Button -->
               <button class="px-3 py-2 rounded-xl border border-white/10 text-slt-muted hover:text-white hover:bg-white/5 text-sm flex items-center gap-2 whitespace-nowrap transition-all" @click="manualSync()">
@@ -271,6 +318,14 @@
         ]),
         lock: { locked: false, locked_by: null, locked_by_me: false },
         lockNotice: '',
+        assignment: @js([
+          'assigned_to_id' => $contact->assigned_admin_id,
+          'assigned_to_name' => $contact->assignedAdmin?->name,
+          'assigned_to_me' => $contact->assigned_admin_id
+            ? (int) $contact->assigned_admin_id === (int) auth()->id()
+            : false,
+        ]),
+        assignmentSaving: false,
         pollMs: 5000,
         listPollMs: 30000,
         syncContactsEveryMs: 30000,
@@ -518,6 +573,55 @@
             await this.acquireLock();
           } else {
             await this.fetchLockStatus();
+          }
+        },
+
+        // Hand this chat to another admin (or release it back to the shared
+        // inbox when userId is null). Reloads, because a transferred chat
+        // leaves this admin's list entirely.
+        async assignChat(userId) {
+          if (this.assignmentSaving) return;
+          this.assignmentSaving = true;
+
+          try {
+            const body = new FormData();
+            body.set('_token', '{{ csrf_token() }}');
+            if (userId !== null) body.set('user_id', userId);
+
+            const res = await fetch(`/chats/${contactId}/assign`, {
+              method: 'POST',
+              headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Accept': 'application/json' },
+              body,
+            });
+
+            let data = {};
+            try { data = await res.json(); } catch (e) { data = {}; }
+
+            if (!res.ok || !data.ok) {
+              this.showError(data.error || 'Failed to transfer this chat.', 'assign-chat');
+              return;
+            }
+
+            this.clearError('assign-chat');
+            this.assignment = {
+              assigned_to_id: data.assigned_to ? data.assigned_to.id : null,
+              assigned_to_name: data.assigned_to ? data.assigned_to.name : null,
+              assigned_to_me: data.assigned_to
+                ? Number(data.assigned_to.id) === {{ (int) auth()->id() }}
+                : false,
+            };
+
+            if (!this.assignment.assigned_to_me) {
+              // No longer ours to view - go back to the inbox.
+              window.location.href = '{{ route('chats.index') }}';
+              return;
+            }
+
+            await this.refreshList();
+          } catch (e) {
+            this.showError('Failed to transfer this chat.', 'assign-chat');
+          } finally {
+            this.assignmentSaving = false;
           }
         },
 

@@ -19,6 +19,9 @@
     $showNeedsHumanBadge = $needsHuman
       && (!$handoffRequestedAt || $handoffRequestedAt->copy()->addHour()->isFuture());
     $assignedAgentName = $c->humanHandoffAssignedTo?->name;
+    // Unassigned chats sit in the shared pool and are visible to every admin.
+    $isUnassigned = $c->assigned_admin_id === null;
+    $ownerName = $c->assignedAdmin?->name;
     $lastActivityAt = $c->last_message_at ?? $c->updated_at;
     $preview = $c->last_message_preview ?: 'Waiting for customer messages';
     $previewPrefix = $c->last_message_direction === 'out' ? 'You: ' : 'Customer: ';
@@ -60,6 +63,15 @@
             {{ $c->name ?? $c->mobile }}
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
+            @if($isUnassigned)
+              <span class="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slt-muted">
+                Unassigned
+              </span>
+            @elseif((int) $c->assigned_admin_id !== (int) auth()->id())
+              <span class="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slt-muted">
+                {{ $ownerName }}
+              </span>
+            @endif
             @if($lastActivityAt)
               <div class="hidden sm:block text-[11px] {{ $hasUnread ? 'text-slt-accent' : 'text-slt-muted' }}">
                 {{ $lastActivityAt->format('H:i') }}

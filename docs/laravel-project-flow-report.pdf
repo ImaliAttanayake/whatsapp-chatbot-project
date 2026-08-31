@@ -1,0 +1,3272 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 26 /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 2524 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(SLT WHATSAPP AGENT LARAVEL PROJECT FLOW REPORT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Audience: PHP developer who is new to Laravel) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Scope: this report focuses on the custom project code. Default Laravel/Breeze) Tj
+0 -13 Td
+(files are only mentioned when they directly affect the custom flow.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. LARAVEL FIRST: WHAT LARAVEL IS DOING IN THIS PROJECT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel is still plain PHP, but it organizes the app into a predictable request) Tj
+0 -13 Td
+(lifecycle:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. A request enters through public/index.php.) Tj
+0 -13 Td
+(2. Laravel boots the app using bootstrap/app.php.) Tj
+0 -13 Td
+(3. Laravel matches the URL to a route in routes/web.php.) Tj
+0 -13 Td
+(4. Middleware runs first. In this project, most custom routes require auth and) Tj
+0 -13 Td
+(   verified.) Tj
+0 -13 Td
+(5. The route calls a controller method.) Tj
+0 -13 Td
+(6. The controller talks to models and services.) Tj
+0 -13 Td
+(7. The controller returns either:) Tj
+0 -13 Td
+(   - a Blade view for HTML pages, or) Tj
+0 -13 Td
+(   - JSON for the JavaScript chat UI.) Tj
+0 -13 Td
+(8. Blade renders the server-side HTML. JavaScript inside Blade then keeps polling) Tj
+0 -13 Td
+(   JSON endpoints.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(For command-line tasks, the flow is similar:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. A CLI command enters through artisan.) Tj
+0 -13 Td
+(2. Laravel boots the app using bootstrap/app.php.) Tj
+0 -13 Td
+(3. The command is defined in app/Console/Commands/....) Tj
+0 -13 Td
+(4. The command uses models and services.) Tj
+0 -13 Td
+(5. Output goes back to the terminal.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That means Laravel is not replacing PHP logic. It is structuring where each piece) Tj
+0 -13 Td
+(of logic belongs.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(2. MVC IN THIS PROJECT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel uses MVC, but this app is really closer to "Route -> Controller ->) Tj
+0 -13 Td
+(Service/Model -> View or JSON".) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Model) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Models represent database tables and relationships.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Custom models in this project:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- app/Models/Contact.php) Tj
+0 -13 Td
+(- app/Models/Message.php) Tj
+0 -13 Td
+(- app/Models/ApiLog.php) Tj
+0 -13 Td
+(- app/Models/User.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(View) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Views are Blade templates in resources/views.) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 1 of 26) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2454 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(Main custom views:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- resources/views/chats/index.blade.php) Tj
+0 -13 Td
+(- resources/views/chats/show.blade.php) Tj
+0 -13 Td
+(- resources/views/chats/partials/list-items.blade.php) Tj
+0 -13 Td
+(- resources/views/logs/index.blade.php) Tj
+0 -13 Td
+(- resources/views/layouts/app.blade.php) Tj
+0 -13 Td
+(- resources/views/layouts/navigation.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Controller) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Controllers receive the request and coordinate the work.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Custom controllers:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- app/Http/Controllers/ChatController.php) Tj
+0 -13 Td
+(- app/Http/Controllers/ChatApiController.php) Tj
+0 -13 Td
+(- app/Http/Controllers/ChatLockController.php) Tj
+0 -13 Td
+(- app/Http/Controllers/ContactController.php) Tj
+0 -13 Td
+(- app/Http/Controllers/LogController.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important project-specific note) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This project does **not** currently behave like a classic "store every inbound) Tj
+0 -13 Td
+(message in DB" chat app.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Current behavior:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- inbound messages are fetched live from the SLT API) Tj
+0 -13 Td
+(- outbound replies are stored locally in the messages table) Tj
+0 -13 Td
+(- recent contacts are stored locally in the contacts table) Tj
+0 -13 Td
+(- API requests and responses are stored locally in the api_logs table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(There is an older command, WhatsappSync, that can store inbound messages into the) Tj
+0 -13 Td
+(database, but the scheduler currently does not use it and the web UI reads inbound) Tj
+0 -13 Td
+(messages from the API, not from the local messages table.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(3. CUSTOM FILE ARCHITECTURE OF THIS PROJECT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    app/) Tj
+0 -13 Td
+(      Console/Commands/) Tj
+0 -13 Td
+(        WhatsappSync.php) Tj
+0 -13 Td
+(        WhatsappSyncContacts.php) Tj
+0 -13 Td
+(      Http/Controllers/) Tj
+0 -13 Td
+(        ChatController.php) Tj
+0 -13 Td
+(        ChatApiController.php) Tj
+0 -13 Td
+(        ChatLockController.php) Tj
+0 -13 Td
+(        ContactController.php) Tj
+0 -13 Td
+(        LogController.php) Tj
+0 -13 Td
+(      Models/) Tj
+0 -13 Td
+(        Contact.php) Tj
+0 -13 Td
+(        Message.php) Tj
+0 -13 Td
+(        ApiLog.php) Tj
+0 -13 Td
+(        User.php) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 2 of 26) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 1911 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(      Providers/) Tj
+0 -13 Td
+(        AppServiceProvider.php) Tj
+0 -13 Td
+(      Services/) Tj
+0 -13 Td
+(        SltWhatsappClient.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    bootstrap/) Tj
+0 -13 Td
+(      app.php) Tj
+0 -13 Td
+(      providers.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    config/) Tj
+0 -13 Td
+(      app.php) Tj
+0 -13 Td
+(      chat.php) Tj
+0 -13 Td
+(      database.php) Tj
+0 -13 Td
+(      logging.php) Tj
+0 -13 Td
+(      queue.php) Tj
+0 -13 Td
+(      services.php) Tj
+0 -13 Td
+(      session.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    database/) Tj
+0 -13 Td
+(      migrations/) Tj
+0 -13 Td
+(      seeders/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    public/) Tj
+0 -13 Td
+(      index.php) Tj
+0 -13 Td
+(      build/) Tj
+0 -13 Td
+(      images/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    resources/views/) Tj
+0 -13 Td
+(      chats/) Tj
+0 -13 Td
+(      layouts/) Tj
+0 -13 Td
+(      logs/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    routes/) Tj
+0 -13 Td
+(      web.php) Tj
+0 -13 Td
+(      console.php) Tj
+0 -13 Td
+(      auth.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    .env.example) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4. END-TO-END FLOW IN THIS APP) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.1 BROWSER FLOW: OPEN CHAT LIST) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. User visits /chats.) Tj
+0 -13 Td
+(2. Route in routes/web.php maps /chats to ChatController@index.) Tj
+0 -13 Td
+(3. ChatController@index loads contacts from the contacts table.) Tj
+0 -13 Td
+(4. Controller returns resources/views/chats/index.blade.php.) Tj
+0 -13 Td
+(5. Blade renders the page.) Tj
+0 -13 Td
+(6. JavaScript in the Blade file keeps refreshing the contact list and periodically) Tj
+0 -13 Td
+(   triggers recent-contact sync.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.2 BROWSER FLOW: OPEN ONE CONVERSATION) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. User clicks one contact.) Tj
+0 -13 Td
+(2. Route /chats/{contact} maps to ChatController@show.) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 3 of 26) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 3111 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(3. Laravel automatically resolves {contact} to a Contact model using route model) Tj
+0 -13 Td
+(   binding.) Tj
+0 -13 Td
+(4. Controller returns resources/views/chats/show.blade.php.) Tj
+0 -13 Td
+(5. The page loads and Alpine.js starts chatApp\(contactId\).) Tj
+0 -13 Td
+(6. JavaScript then calls JSON endpoints:) Tj
+0 -13 Td
+(   - GET /chats/{contact}/lock) Tj
+0 -13 Td
+(   - GET /chats/{contact}/messages) Tj
+0 -13 Td
+(   - POST /chats/{contact}/read) Tj
+0 -13 Td
+(   - later, POST /chats/{contact}/send) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.3 BROWSER FLOW: LOAD MESSAGES) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. resources/views/chats/show.blade.php calls GET /chats/{contact}/messages.) Tj
+0 -13 Td
+(2. Route maps to ChatApiController@messages.) Tj
+0 -13 Td
+(3. Controller asks SltWhatsappClient for messages from SLT API.) Tj
+0 -13 Td
+(4. Controller normalizes the API payload into a UI-friendly structure.) Tj
+0 -13 Td
+(5. Controller also loads local outgoing messages from the messages table.) Tj
+0 -13 Td
+(6. Controller merges API messages and local outgoing messages.) Tj
+0 -13 Td
+(7. Controller returns JSON.) Tj
+0 -13 Td
+(8. Alpine.js renders chat bubbles.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.4 BROWSER FLOW: SEND A REPLY) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. User types a message and clicks Send.) Tj
+0 -13 Td
+(2. JavaScript posts to POST /chats/{contact}/send.) Tj
+0 -13 Td
+(3. Route maps to ChatApiController@send.) Tj
+0 -13 Td
+(4. Controller acquires or refreshes the chat lock inside a DB transaction.) Tj
+0 -13 Td
+(5. Controller validates the incoming text.) Tj
+0 -13 Td
+(6. Controller asks SltWhatsappClient for recent inbound messages to find the) Tj
+0 -13 Td
+(   latest inbound UUID.) Tj
+0 -13 Td
+(7. Controller sends the reply to SLT API using that UUID.) Tj
+0 -13 Td
+(8. If SLT accepts it, controller stores an outbound row in messages.) Tj
+0 -13 Td
+(9. Controller returns JSON { ok: true }.) Tj
+0 -13 Td
+(10. Frontend reloads messages and chat list.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.5 SCHEDULER FLOW: SYNC RECENT CONTACTS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. php artisan schedule:work runs the Laravel scheduler.) Tj
+0 -13 Td
+(2. routes/console.php schedules whatsapp:sync-contacts every minute.) Tj
+0 -13 Td
+(3. app/Console/Commands/WhatsappSyncContacts.php runs.) Tj
+0 -13 Td
+(4. Command asks SltWhatsappClient for recent active mobile numbers.) Tj
+0 -13 Td
+(5. Command upserts contacts into the contacts table.) Tj
+0 -13 Td
+(6. Chat sidebar now shows new or recently active contacts.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4.6 ADMIN LOGS FLOW) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. User visits /logs.) Tj
+0 -13 Td
+(2. Route maps to LogController@index.) Tj
+0 -13 Td
+(3. Controller checks auth\(\)->user\(\)->is_admin.) Tj
+0 -13 Td
+(4. If tab is api, controller reads from the api_logs table.) Tj
+0 -13 Td
+(5. If tab is errors, controller reads Laravel log files from storage/logs.) Tj
+0 -13 Td
+(6. Controller returns resources/views/logs/index.blade.php.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(5. ROUTES: WHAT HAPPENS HERE AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 4 of 26) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2351 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(Main custom route file: routes/web.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(What this file does here:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- defines page routes for chats and logs) Tj
+0 -13 Td
+(- defines JSON endpoints for polling, send, read, sync, and lock handling) Tj
+0 -13 Td
+(- groups most custom routes under auth and verified) Tj
+0 -13 Td
+(- relies on route model binding for {contact}) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Custom routes in this project) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Page routes:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- GET /chats -> ChatController@index) Tj
+0 -13 Td
+(- GET /chats/list -> ChatController@list) Tj
+0 -13 Td
+(- GET /chats/{contact} -> ChatController@show) Tj
+0 -13 Td
+(- GET /logs -> LogController@index) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Contact routes:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- POST /contacts -> ContactController@store) Tj
+0 -13 Td
+(- PUT /contacts/{contact} -> ContactController@update) Tj
+0 -13 Td
+(- POST /contacts/sync-recent -> ContactController@syncRecent) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Chat API routes:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- GET /chats/{contact}/messages -> ChatApiController@messages) Tj
+0 -13 Td
+(- POST /chats/{contact}/send -> ChatApiController@send) Tj
+0 -13 Td
+(- POST /chats/{contact}/sync -> ChatApiController@sync) Tj
+0 -13 Td
+(- POST /chats/{contact}/read -> ChatApiController@markRead) Tj
+0 -13 Td
+(- POST /chats/sync-all -> ChatApiController@syncAll) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Lock routes:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- GET /chats/{contact}/lock -> ChatLockController@status) Tj
+0 -13 Td
+(- POST /chats/{contact}/lock/acquire -> ChatLockController@acquire) Tj
+0 -13 Td
+(- POST /chats/{contact}/lock/release -> ChatLockController@release) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(How to create a new route in Laravel) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Example:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    use App\\Http\\Controllers\\ReportController;) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    Route::get\('/reports', [ReportController::class, ) Tj
+0 -13 Td
+(    'index']\)->name\('reports.index'\);) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(If you need a controller:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:controller ReportController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important Laravel concept used here: route model binding) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(In:) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 5 of 26) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2178 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(    Route::get\('/chats/{contact}', [ChatController::class, 'show']\);) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel sees {contact} and automatically injects App\\Models\\Contact into:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    public function show\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That saves you from writing manual lookup code like:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    $contact = Contact::findOrFail\($id\);) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6. CONTROLLERS: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Controllers in Laravel are the traffic managers. They should not contain low-level) Tj
+0 -13 Td
+(infrastructure details if that logic can live in models or services.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:controller ChatController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6.1 ChatController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- returns HTML pages for chat list and chat detail) Tj
+0 -13 Td
+(- renders the contact sidebar partial for AJAX refreshes) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Methods:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(index\(\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Read sidebar limit from config\('chat.list_limit'\).) Tj
+0 -13 Td
+(2. Load contacts ordered by latest updated_at.) Tj
+0 -13 Td
+(3. Return chats.index.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(show\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Resolve the selected contact using route model binding.) Tj
+0 -13 Td
+(2. Load the sidebar contact list.) Tj
+0 -13 Td
+(3. Return chats.show with both the selected contact and the list.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(list\(Request $request\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Read an optional limit query parameter.) Tj
+0 -13 Td
+(2. Load contacts for sidebar refresh.) Tj
+0 -13 Td
+(3. Read UI flags such as show_lock, show_active, and show_preview.) Tj
+0 -13 Td
+(4. Return the Blade partial chats.partials.list-items.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why this controller exists:) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 6 of 26) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2449 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(- page rendering and partial rendering are still server-side) Tj
+0 -13 Td
+(- the page itself contains JavaScript, but the HTML shell comes from Blade) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6.2 ChatApiController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- powers the chat UI JSON endpoints) Tj
+0 -13 Td
+(- fetches live messages from SLT) Tj
+0 -13 Td
+(- sends replies) Tj
+0 -13 Td
+(- marks conversations as read) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Methods:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(messages\(Contact $contact, SltWhatsappClient $client\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Ask SLT API for recent messages using the contact mobile number.) Tj
+0 -13 Td
+(2. Normalize various possible API response shapes.) Tj
+0 -13 Td
+(3. Split combined API rows into two bubbles when needed.) Tj
+0 -13 Td
+(4. Load locally stored outgoing rows from messages.) Tj
+0 -13 Td
+(5. Merge live API data and local DB replies.) Tj
+0 -13 Td
+(6. Sort the merged list.) Tj
+0 -13 Td
+(7. Return JSON.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is the most important project-specific runtime path.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(send\(Contact $contact, Request $request, SltWhatsappClient $client\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Open a transaction and lock the selected contact row using lockForUpdate\(\).) Tj
+0 -13 Td
+(2. If the lock is stale, clear it.) Tj
+0 -13 Td
+(3. If another admin owns the lock, stop with HTTP 423.) Tj
+0 -13 Td
+(4. If lock is free or owned by the current admin, refresh it.) Tj
+0 -13 Td
+(5. Validate the new message text.) Tj
+0 -13 Td
+(6. Fetch recent inbound messages and find the latest inbound UUID.) Tj
+0 -13 Td
+(7. Call SLT reply.php.) Tj
+0 -13 Td
+(8. Detect payload-level errors from the SLT response.) Tj
+0 -13 Td
+(9. Save the outgoing message locally using updateOrCreate.) Tj
+0 -13 Td
+(10. Return success JSON.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(markRead\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Update contacts.last_read_at.) Tj
+0 -13 Td
+(2. Return JSON.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(sync\(Contact $contact\) and syncAll\(Request $request\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(These are compatibility endpoints for the frontend. They no longer perform DB) Tj
+0 -13 Td
+(message sync. They return success so the current UI can still call them.) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 7 of 26) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 1871 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(6.3 ChatLockController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- handles multi-admin chat locking) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Methods:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(status\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Load the contact inside a transaction.) Tj
+0 -13 Td
+(2. Clear stale lock if needed.) Tj
+0 -13 Td
+(3. Return a lock payload to the frontend.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(acquire\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Lock the contact row with lockForUpdate\(\).) Tj
+0 -13 Td
+(2. Clear stale lock if needed.) Tj
+0 -13 Td
+(3. If another admin owns it, return HTTP 423.) Tj
+0 -13 Td
+(4. Otherwise assign current user as lock owner.) Tj
+0 -13 Td
+(5. Return JSON lock state.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(release\(Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Lock the row in a transaction.) Tj
+0 -13 Td
+(2. Clear stale lock if needed.) Tj
+0 -13 Td
+(3. If nobody owns it, return already released.) Tj
+0 -13 Td
+(4. If another admin owns it, reject with HTTP 423.) Tj
+0 -13 Td
+(5. If current admin owns it, clear locked_by_user_id and locked_at.) Tj
+0 -13 Td
+(6. Return JSON.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why lock logic is in its own controller:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- it keeps send logic smaller) Tj
+0 -13 Td
+(- the frontend can poll lock state independently from messages) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6.4 ContactController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- creates or updates contacts) Tj
+0 -13 Td
+(- triggers recent-contact sync) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Methods:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(store\(Request $request\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 8 of 26) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 2127 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(1. Validate name and mobile.) Tj
+0 -13 Td
+(2. Strip non-digits.) Tj
+0 -13 Td
+(3. Normalize 07... to 94....) Tj
+0 -13 Td
+(4. Use Contact::updateOrCreate.) Tj
+0 -13 Td
+(5. Redirect back to chats with a flash message.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(update\(Request $request, Contact $contact\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Validate name.) Tj
+0 -13 Td
+(2. Update contact name.) Tj
+0 -13 Td
+(3. Redirect back to the selected chat.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(syncRecent\(Request $request\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Read sync limit from request or config.) Tj
+0 -13 Td
+(2. Enforce a max limit.) Tj
+0 -13 Td
+(3. Call the artisan command whatsapp:sync-contacts.) Tj
+0 -13 Td
+(4. Inspect command output to detect "skipped" state.) Tj
+0 -13 Td
+(5. Redirect back with a success or error flash message.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6.5 LogController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- shows API log entries from DB) Tj
+0 -13 Td
+(- shows application error log entries from storage/logs) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Only admins are allowed.) Tj
+0 -13 Td
+(2. Decide which tab is active: api or errors.) Tj
+0 -13 Td
+(3. If api, paginate ApiLog rows and decorate them for display.) Tj
+0 -13 Td
+(4. If errors, read log files, parse entries, group repeated problems, and mark) Tj
+0 -13 Td
+(   them as active or fixed.) Tj
+0 -13 Td
+(5. Return logs.index.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This controller is heavier than the others because it contains display-side) Tj
+0 -13 Td
+(analysis logic, not just routing logic.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7. MODELS: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:model Contact) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(If you want model + migration together:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:model Contact -m) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7.1 Contact) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 9 of 26) Tj
+ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 1695 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(Represents: contacts table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Key fields used by this project:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- name) Tj
+0 -13 Td
+(- mobile) Tj
+0 -13 Td
+(- last_synced_at) Tj
+0 -13 Td
+(- last_read_at) Tj
+0 -13 Td
+(- locked_by_user_id) Tj
+0 -13 Td
+(- locked_at) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Relationships:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- messages\(\) -> has many Message) Tj
+0 -13 Td
+(- lastMessage\(\) -> latest message by sent_at) Tj
+0 -13 Td
+(- lockedBy\(\) -> belongs to User) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important custom method:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- isLockExpired\(\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(What it does:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Reads lock TTL from config\('chat.lock_ttl_seconds'\).) Tj
+0 -13 Td
+(2. Compares locked_at with now\(\).) Tj
+0 -13 Td
+(3. Returns true if lock is stale.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Where it is used:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ChatApiController) Tj
+0 -13 Td
+(- ChatLockController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7.2 Message) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Represents: messages table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Key fields:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- contact_id) Tj
+0 -13 Td
+(- uuid) Tj
+0 -13 Td
+(- direction) Tj
+0 -13 Td
+(- body) Tj
+0 -13 Td
+(- sent_at) Tj
+0 -13 Td
+(- raw) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Relationship:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- contact\(\) -> belongs to Contact) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important project behavior:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- currently used mainly for local outgoing messages) Tj
+0 -13 Td
+(- not the primary source of inbound chat history in the current UI) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7.3 ApiLog) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 10 of 26) Tj
+ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 1865 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(Represents: api_logs table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Used for:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- storing SLT API call metadata) Tj
+0 -13 Td
+(- request payload snapshots) Tj
+0 -13 Td
+(- response payload snapshots) Tj
+0 -13 Td
+(- duration and status monitoring) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This model is written by SltWhatsappClient and read by LogController.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7.4 User) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Mostly default Laravel auth model, but one custom field matters:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- is_admin) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Used for:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- log access control) Tj
+0 -13 Td
+(- lock ownership relationships through Contact::lockedBy\(\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(8. SERVICES: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel has no default make:service command. Services are usually plain PHP) Tj
+0 -13 Td
+(classes placed under app/Services.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one manually:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    mkdir -p app/Services) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Then create a file such as:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    namespace App\\Services;) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    class ReportService) Tj
+0 -13 Td
+(    {) Tj
+0 -13 Td
+(        public function run\(\): array) Tj
+0 -13 Td
+(        {) Tj
+0 -13 Td
+(            return [];) Tj
+0 -13 Td
+(        }) Tj
+0 -13 Td
+(    }) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(SltWhatsappClient) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- centralizes all communication with the SLT WhatsApp API) Tj
+0 -13 Td
+(- keeps controller code cleaner) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Configuration source:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- config/services.php) Tj
+0 -13 Td
+(- environment variables from .env) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 11 of 26) Tj
+ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 1961 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(Constructor flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Read config\('services.slt_whatsapp'\).) Tj
+0 -13 Td
+(2. Store base URL, username, password, phone number ID, and optional bearer token.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Main methods:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(getToken\(\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. If .env already contains a bearer token, use it.) Tj
+0 -13 Td
+(2. Otherwise use Laravel cache to remember a generated token for 50 minutes.) Tj
+0 -13 Td
+(3. If missing, call login\(\).) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(login\(\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. POST to /login.php.) Tj
+0 -13 Td
+(2. Measure duration.) Tj
+0 -13 Td
+(3. Parse token from response.) Tj
+0 -13 Td
+(4. Write one row to api_logs.) Tj
+0 -13 Td
+(5. Throw an exception if login failed.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(getMessages\(string $mobile, int $limit = 20\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Call authenticated POST /getMessages.php.) Tj
+0 -13 Td
+(2. Return parsed JSON.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(getRecentActiveMobiles\(int $take = 5\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Call authenticated GET /getRecentActiveMobiles.php.) Tj
+0 -13 Td
+(2. Support multiple possible response shapes.) Tj
+0 -13 Td
+(3. Extract mobile numbers.) Tj
+0 -13 Td
+(4. Normalize 07... to 94....) Tj
+0 -13 Td
+(5. Deduplicate and slice to the required amount.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(reply\(string $uuid, string $mobile, string $replyMessage\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Call authenticated POST /reply.php.) Tj
+0 -13 Td
+(2. Include:) Tj
+0 -13 Td
+(   - inbound message UUID) Tj
+0 -13 Td
+(   - phone number ID) Tj
+0 -13 Td
+(   - mobile) Tj
+0 -13 Td
+(   - reply message) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(authedPost\(\) and authedGet\(\)) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 12 of 26) Tj
+ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 26 0 R >>
+endobj
+28 0 obj
+<< /Length 1921 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Get bearer token.) Tj
+0 -13 Td
+(2. Make HTTP request.) Tj
+0 -13 Td
+(3. If HTTP 401 happens, clear cached token and retry once.) Tj
+0 -13 Td
+(4. Measure duration.) Tj
+0 -13 Td
+(5. Save request/response to api_logs.) Tj
+0 -13 Td
+(6. Throw exception on non-success HTTP status.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why the service layer matters here:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- controllers should not know SLT endpoint details) Tj
+0 -13 Td
+(- API logging is centralized) Tj
+0 -13 Td
+(- token refresh logic stays in one place) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9. CONFIG FILES: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Custom config files are plain PHP arrays under config/.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one manually, for example:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    // config/chat.php) Tj
+0 -13 Td
+(    return [) Tj
+0 -13 Td
+(        'lock_ttl_seconds' => \(int\) env\('CHAT_LOCK_TTL_SECONDS', 1800\),) Tj
+0 -13 Td
+(    ];) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Then read it anywhere with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    config\('chat.lock_ttl_seconds'\)) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.1 config/chat.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is the main custom config file.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(It controls:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- lock_ttl_seconds) Tj
+0 -13 Td
+(- list_limit) Tj
+0 -13 Td
+(- sync_recent_limit) Tj
+0 -13 Td
+(- sync_recent_max_limit) Tj
+0 -13 Td
+(- error_active_window_minutes) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Where it is used:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ChatController) Tj
+0 -13 Td
+(- ContactController) Tj
+0 -13 Td
+(- ChatLockController) Tj
+0 -13 Td
+(- Contact model) Tj
+0 -13 Td
+(- LogController) Tj
+0 -13 Td
+(- Blade views) Tj
+0 -13 Td
+(- routes/console.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.2 config/services.php) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 13 of 26) Tj
+ET
+endstream
+endobj
+29 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 28 0 R >>
+endobj
+30 0 obj
+<< /Length 1931 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(This project adds:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- services.slt_whatsapp.base) Tj
+0 -13 Td
+(- services.slt_whatsapp.username) Tj
+0 -13 Td
+(- services.slt_whatsapp.password) Tj
+0 -13 Td
+(- services.slt_whatsapp.phone_number_id) Tj
+0 -13 Td
+(- services.slt_whatsapp.bearer_token) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Where it is used:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- SltWhatsappClient) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.3 config/app.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Project-relevant custom behavior:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- timezone is read from APP_TIMEZONE) Tj
+0 -13 Td
+(- default fallback used here is Asia/Colombo) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This matters because:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- lock timestamps) Tj
+0 -13 Td
+(- message timestamps) Tj
+0 -13 Td
+(- logs page display times) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.4 config/database.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important because this app supports:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- SQLite) Tj
+0 -13 Td
+(- MySQL) Tj
+0 -13 Td
+(- PostgreSQL) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(All models use this config indirectly. When .env changes DB_CONNECTION, Eloquent) Tj
+0 -13 Td
+(automatically uses that database connection.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.5 config/session.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Relevant here because .env currently points sessions to the database:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- SESSION_DRIVER=database) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That is why the default sessions table migration matters for this project.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.6 config/cache.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Relevant because:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- cached SLT token uses Laravel cache) Tj
+0 -13 Td
+(- .env currently uses CACHE_STORE=database) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That is why the default cache and cache_locks tables matter.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.7 config/queue.php) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 14 of 26) Tj
+ET
+endstream
+endobj
+31 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 30 0 R >>
+endobj
+32 0 obj
+<< /Length 1979 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(Relevant because .env currently uses:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- QUEUE_CONNECTION=database) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The current custom chat flow does not use queues directly, but Laravel is) Tj
+0 -13 Td
+(configured for them.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9.8 config/logging.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Relevant because:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- Laravel application errors go to storage/logs/laravel.log) Tj
+0 -13 Td
+(- LogController reads those files for the Error Logs tab) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(10. .ENV: WHAT HAPPENS IN THIS PROJECT AND HOW ITS VALUES FLOW) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create .env from template:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    cp .env.example .env) Tj
+0 -13 Td
+(    php artisan key:generate) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow of .env in Laravel:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. .env stores deployment-specific values.) Tj
+0 -13 Td
+(2. Config files read them through env\(...\).) Tj
+0 -13 Td
+(3. App code reads config through config\(...\).) Tj
+0 -13 Td
+(4. Controllers, services, models, and views use those config values.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Example in this project:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. .env contains CHAT_LOCK_TTL_SECONDS=1800) Tj
+0 -13 Td
+(2. config/chat.php reads it) Tj
+0 -13 Td
+(3. Contact::isLockExpired\(\) uses config\('chat.lock_ttl_seconds'\)) Tj
+0 -13 Td
+(4. ChatLockController and ChatApiController use that behavior) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important .env keys for this app) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(App:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- APP_NAME) Tj
+0 -13 Td
+(- APP_ENV) Tj
+0 -13 Td
+(- APP_KEY) Tj
+0 -13 Td
+(- APP_DEBUG) Tj
+0 -13 Td
+(- APP_URL) Tj
+0 -13 Td
+(- APP_TIMEZONE) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Database:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- DB_CONNECTION) Tj
+0 -13 Td
+(- DB_HOST) Tj
+0 -13 Td
+(- DB_PORT) Tj
+0 -13 Td
+(- DB_DATABASE) Tj
+0 -13 Td
+(- DB_USERNAME) Tj
+0 -13 Td
+(- DB_PASSWORD) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 15 of 26) Tj
+ET
+endstream
+endobj
+33 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 32 0 R >>
+endobj
+34 0 obj
+<< /Length 1690 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(Chat behavior:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- CHAT_LOCK_TTL_SECONDS) Tj
+0 -13 Td
+(- CHAT_LIST_LIMIT) Tj
+0 -13 Td
+(- CHAT_SYNC_RECENT_LIMIT) Tj
+0 -13 Td
+(- CHAT_SYNC_RECENT_MAX_LIMIT) Tj
+0 -13 Td
+(- CHAT_ERROR_ACTIVE_WINDOW_MINUTES) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(SLT API:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- SLT_API_BASE) Tj
+0 -13 Td
+(- SLT_API_USERNAME) Tj
+0 -13 Td
+(- SLT_API_PASSWORD) Tj
+0 -13 Td
+(- SLT_PHONE_NUMBER_ID) Tj
+0 -13 Td
+(- optional SLT_API_BEARER_TOKEN) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Infrastructure:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- SESSION_DRIVER) Tj
+0 -13 Td
+(- CACHE_STORE) Tj
+0 -13 Td
+(- QUEUE_CONNECTION) Tj
+0 -13 Td
+(- LOG_CHANNEL) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(11. MIGRATIONS: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Migrations define database structure.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:migration create_contacts_table --create=contacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel then generates a timestamped file in database/migrations.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Project custom migrations) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(create_contacts_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Creates:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- id) Tj
+0 -13 Td
+(- name) Tj
+0 -13 Td
+(- mobile unique) Tj
+0 -13 Td
+(- last_synced_at) Tj
+0 -13 Td
+(- timestamps) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- stores the chat sidebar's known contacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(create_api_logs_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Creates:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- user_id) Tj
+0 -13 Td
+(- service) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 16 of 26) Tj
+ET
+endstream
+endobj
+35 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 34 0 R >>
+endobj
+36 0 obj
+<< /Length 1499 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(- endpoint) Tj
+0 -13 Td
+(- method) Tj
+0 -13 Td
+(- status) Tj
+0 -13 Td
+(- duration_ms) Tj
+0 -13 Td
+(- request) Tj
+0 -13 Td
+(- response) Tj
+0 -13 Td
+(- timestamps) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- audit and troubleshooting for SLT API calls) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(create_messages_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Creates:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- contact_id) Tj
+0 -13 Td
+(- uuid) Tj
+0 -13 Td
+(- direction) Tj
+0 -13 Td
+(- body) Tj
+0 -13 Td
+(- sent_at) Tj
+0 -13 Td
+(- raw) Tj
+0 -13 Td
+(- unique pair: contact_id + uuid) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- store outgoing replies locally) Tj
+0 -13 Td
+(- optionally support inbound sync if WhatsappSync is used) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(add_is_admin_to_users_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Adds:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- is_admin) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- simple admin authorization) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(add_chat_lock_to_contacts_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Adds:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- locked_by_user_id) Tj
+0 -13 Td
+(- locked_at) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- multi-admin lock ownership per contact) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(add_last_read_at_to_contacts_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Adds:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- last_read_at) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 17 of 26) Tj
+ET
+endstream
+endobj
+37 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 36 0 R >>
+endobj
+38 0 obj
+<< /Length 1892 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(Why it exists:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- remember when a contact conversation was last read) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Default migrations that still matter) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(These are default, but they are operationally important because current .env uses) Tj
+0 -13 Td
+(them:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- create_users_table) Tj
+0 -13 Td
+(- create_cache_table) Tj
+0 -13 Td
+(- create_jobs_table) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(12. SEEDERS: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:seeder AdminSeeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(DatabaseSeeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is the master entry point. Laravel calls it during:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan migrate --seed) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(In this project it calls:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- AdminSeeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(AdminSeeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- creates the default admin users) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Define four admin names and emails.) Tj
+0 -13 Td
+(2. Loop through them.) Tj
+0 -13 Td
+(3. Use User::updateOrCreate\(...\).) Tj
+0 -13 Td
+(4. Set password, is_admin, verified email, and remember token.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why updateOrCreate is good here:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- re-running seeders does not create duplicates) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(13. CRUD FLOW IN THIS PROJECT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This app is not a full CRUD app for every table. Some tables are write-only logs,) Tj
+0 -13 Td
+(some are read-heavy, and some are partly managed by API sync.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(13.1 Contacts CRUD) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create:) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 18 of 26) Tj
+ET
+endstream
+endobj
+39 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 38 0 R >>
+endobj
+40 0 obj
+<< /Length 1751 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(- manual create through ContactController@store) Tj
+0 -13 Td
+(- auto create through WhatsappSyncContacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Read:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ChatController@index) Tj
+0 -13 Td
+(- ChatController@show) Tj
+0 -13 Td
+(- ChatController@list) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Update:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ContactController@update) Tj
+0 -13 Td
+(- contact touch\(\) during sync) Tj
+0 -13 Td
+(- lock fields updated by ChatLockController and ChatApiController) Tj
+0 -13 Td
+(- last_read_at updated by ChatApiController@markRead) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Delete:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- no custom delete route currently) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(13.2 Messages CRUD) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ChatApiController@send stores outgoing rows) Tj
+0 -13 Td
+(- optional legacy WhatsappSync stores inbound/outbound rows if used manually) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Read:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- ChatApiController@messages reads local outgoing rows) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Update:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- updateOrCreate in storeLocalOutgoingMessage) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Delete:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- no direct delete route) Tj
+0 -13 Td
+(- deleted automatically if the parent contact is deleted because of cascade) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(13.3 API logs CRUD) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- every SLT request in SltWhatsappClient) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Read:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- LogController@index) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Update:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- not used) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 19 of 26) Tj
+ET
+endstream
+endobj
+41 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 40 0 R >>
+endobj
+42 0 obj
+<< /Length 1709 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(Delete:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- no custom delete flow) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(13.4 Users CRUD) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- AdminSeeder) Tj
+0 -13 Td
+(- manual tinker creation) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Read:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- Laravel auth) Tj
+0 -13 Td
+(- navigation UI) Tj
+0 -13 Td
+(- log authorization) Tj
+0 -13 Td
+(- lock ownership relationship) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Update:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- profile update) Tj
+0 -13 Td
+(- admin flag can be updated manually or by seeder rerun) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Delete:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- profile delete flow) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14. BLADE FILES: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Blade is Laravel's server-side templating engine.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create a Blade file manually:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    resources/views/chats/index.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Return it from a controller like:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    return view\('chats.index', compact\('contacts'\)\);) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14.1 layouts/app.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- global shell for authenticated pages) Tj
+0 -13 Td
+(- loads Vite assets) Tj
+0 -13 Td
+(- includes navigation) Tj
+0 -13 Td
+(- provides a notification system for errors) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14.2 layouts/navigation.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- top navbar) Tj
+0 -13 Td
+(- links to Chats and Logs) Tj
+0 -13 Td
+(- user profile dropdown) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 20 of 26) Tj
+ET
+endstream
+endobj
+43 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 42 0 R >>
+endobj
+44 0 obj
+<< /Length 2128 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(14.3 chats/index.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- chat landing page when no conversation is selected) Tj
+0 -13 Td
+(- displays chat list sidebar) Tj
+0 -13 Td
+(- includes periodic sidebar refresh and recent-contact sync) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14.4 chats/show.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- full chat page for one contact) Tj
+0 -13 Td
+(- contains most of the client-side runtime behavior) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Important behavior inside this Blade:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- initializes Alpine.js state with chatApp\(contactId\)) Tj
+0 -13 Td
+(- polls for messages every 5 seconds) Tj
+0 -13 Td
+(- refreshes sidebar every 30 seconds) Tj
+0 -13 Td
+(- polls or refreshes lock state) Tj
+0 -13 Td
+(- sends messages via fetch) Tj
+0 -13 Td
+(- releases lock on page unload with sendBeacon where possible) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(So in this project, Blade is not only HTML templating. It also contains a lot of) Tj
+0 -13 Td
+(page-specific JavaScript logic.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14.5 chats/partials/list-items.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- render chat list rows) Tj
+0 -13 Td
+(- reused by both full page load and AJAX sidebar refresh) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Why partials help:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- no need to duplicate the same markup in several pages) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(14.6 logs/index.blade.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Purpose:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- render API logs and application error logs) Tj
+0 -13 Td
+(- shows different tables/cards based on active tab) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(15. SERVICES PLUS BLADE PLUS CONTROLLER TOGETHER: ONE REAL EXAMPLE) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Example: opening a chat) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Browser requests /chats/5) Tj
+0 -13 Td
+(2. Route hits ChatController@show) Tj
+0 -13 Td
+(3. Controller returns chats.show) Tj
+0 -13 Td
+(4. Blade loads) Tj
+0 -13 Td
+(5. Alpine init\(\) runs) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 21 of 26) Tj
+ET
+endstream
+endobj
+45 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 44 0 R >>
+endobj
+46 0 obj
+<< /Length 2115 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(6. JS calls /chats/5/lock) Tj
+0 -13 Td
+(7. JS calls /chats/5/messages) Tj
+0 -13 Td
+(8. ChatApiController@messages calls SltWhatsappClient->getMessages\(...\)) Tj
+0 -13 Td
+(9. Controller returns JSON) Tj
+0 -13 Td
+(10. Blade JS renders bubbles) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That is the real runtime loop for this project.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(16. CONSOLE COMMANDS: PART OF THE REAL APPLICATION FLOW) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Even though you did not ask specifically about commands, they are important) Tj
+0 -13 Td
+(because this app uses them as part of its architecture.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:command WhatsappSyncContacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(WhatsappSyncContacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is the active background-sync command.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Receive --limit) Tj
+0 -13 Td
+(2. Call SltWhatsappClient->getRecentActiveMobiles\(\)) Tj
+0 -13 Td
+(3. Create or update Contact rows) Tj
+0 -13 Td
+(4. Print summary to terminal) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(WhatsappSync) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is an older DB message sync command.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Load contacts) Tj
+0 -13 Td
+(2. Fetch messages from SLT) Tj
+0 -13 Td
+(3. Map payload rows into Message rows) Tj
+0 -13 Td
+(4. Update last_synced_at) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(But current project note:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- scheduler line for this command is disabled) Tj
+0 -13 Td
+(- UI message view does not depend on this table for inbound history) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(17. PROVIDERS: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE THEM) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Providers are where Laravel bootstraps services and bindings.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create one with:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:provider ChatServiceProvider) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(AppServiceProvider) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Current state in this project:) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 22 of 26) Tj
+ET
+endstream
+endobj
+47 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 46 0 R >>
+endobj
+48 0 obj
+<< /Length 2038 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(- register\(\) is empty) Tj
+0 -13 Td
+(- boot\(\) is empty) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That means:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- no custom service-container bindings) Tj
+0 -13 Td
+(- no global view composers) Tj
+0 -13 Td
+(- no custom boot logic here yet) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(When you would use a provider in this project) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Examples:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- bind an interface to a concrete WhatsApp client) Tj
+0 -13 Td
+(- register a reusable singleton service) Tj
+0 -13 Td
+(- add global pagination style) Tj
+0 -13 Td
+(- share global view data) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Example binding:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    public function register\(\): void) Tj
+0 -13 Td
+(    {) Tj
+0 -13 Td
+(        $this->app->singleton\(SltWhatsappClient::class, function \(\) {) Tj
+0 -13 Td
+(            return new SltWhatsappClient\(\);) Tj
+0 -13 Td
+(        }\);) Tj
+0 -13 Td
+(    }) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Laravel already auto-resolves SltWhatsappClient here because it has no complex) Tj
+0 -13 Td
+(constructor dependencies beyond config calls, so a custom binding is not required) Tj
+0 -13 Td
+(right now.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(18. PUBLIC FOLDER: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE ITS CONTENTS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The public/ folder is the web server document root.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(public/index.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is the HTTP entry point.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Flow:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. define request start time) Tj
+0 -13 Td
+(2. load maintenance mode file if present) Tj
+0 -13 Td
+(3. load Composer autoloader) Tj
+0 -13 Td
+(4. load bootstrap/app.php) Tj
+0 -13 Td
+(5. capture request and hand it to Laravel) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(public/build/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Contains Vite production build output:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- compiled CSS) Tj
+0 -13 Td
+(- compiled JS) Tj
+0 -13 Td
+(- manifest file) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 23 of 26) Tj
+ET
+endstream
+endobj
+49 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 48 0 R >>
+endobj
+50 0 obj
+<< /Length 1811 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+() Tj
+0 -13 Td
+(How it is created:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    npm run build) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(public/images/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Contains static assets such as slt-logo.png.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(public/.htaccess) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Used by Apache to route requests into Laravel.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(19. BOOTSTRAP: WHAT HAPPENS IN THIS PROJECT AND HOW TO CREATE ITS FLOW) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(bootstrap/app.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This is where Laravel 12 configures the application instance.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(In this project it defines:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- web routes file) Tj
+0 -13 Td
+(- console routes file) Tj
+0 -13 Td
+(- health endpoint /up) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This file is the bridge between the framework bootstrap and your application) Tj
+0 -13 Td
+(files.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(bootstrap/providers.php) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Lists service providers to load.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(In this project:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- only App\\Providers\\AppServiceProvider::class) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(bootstrap/cache/) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Contains framework-generated cached files such as services and packages lists.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(You normally do not edit these manually.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(20. HOW TO CREATE EACH CUSTOM LAYER IN LARAVEL) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Controller) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:controller ChatController) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Model) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:model Contact) Tj
+0 -13 Td
+(    php artisan make:model Contact -m) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Migration) Tj
+0 -13 Td
+() Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 24 of 26) Tj
+ET
+endstream
+endobj
+51 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 50 0 R >>
+endobj
+52 0 obj
+<< /Length 2026 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(    php artisan make:migration create_contacts_table --create=contacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Seeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:seeder AdminSeeder) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Command) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:command WhatsappSyncContacts) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Provider) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    php artisan make:provider ChatServiceProvider) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Blade view) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create manually under:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    resources/views/...) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Service) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create manually under:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    app/Services/...) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Config file) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Create manually under:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(    config/...) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(21. IF YOU WANT TO ADD A NEW FEATURE IN THE SAME STYLE AS THIS PROJECT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Example: add "contact notes") Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Create migration: add notes column to contacts.) Tj
+0 -13 Td
+(2. Update Contact model fillable.) Tj
+0 -13 Td
+(3. Add validation in ContactController.) Tj
+0 -13 Td
+(4. Add route if needed.) Tj
+0 -13 Td
+(5. Add form field in chats/show.blade.php.) Tj
+0 -13 Td
+(6. If notes need external API behavior, add or extend a service.) Tj
+0 -13 Td
+(7. If notes need scheduled sync, add a command and scheduler entry.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(That is the normal Laravel extension path in this project.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(22. SHORT SUMMARY OF THE REAL ARCHITECTURE OF THIS APP) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(This project is a Laravel web dashboard around one external API client.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The practical architecture is:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. Blade renders the shell pages.) Tj
+0 -13 Td
+(2. Alpine.js inside Blade calls JSON endpoints.) Tj
+0 -13 Td
+(3. Controllers coordinate the request.) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 25 of 26) Tj
+ET
+endstream
+endobj
+53 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 52 0 R >>
+endobj
+54 0 obj
+<< /Length 971 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 46 792 Tm
+(4. SltWhatsappClient talks to SLT API.) Tj
+0 -13 Td
+(5. Models store local data for contacts, outgoing messages, API logs, users, and) Tj
+0 -13 Td
+(   lock state.) Tj
+0 -13 Td
+(6. Commands and the scheduler keep contacts fresh.) Tj
+0 -13 Td
+(7. Config and .env drive runtime behavior like lock TTL, sync limits, timezone,) Tj
+0 -13 Td
+(   DB, and API credentials.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The most important thing to understand is this:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- the UI is server-rendered first) Tj
+0 -13 Td
+(- then it behaves like a lightweight polling frontend) Tj
+0 -13 Td
+(- and the real business integration point is SltWhatsappClient) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(If you understand routes/web.php, the custom controllers, SltWhatsappClient, the) Tj
+0 -13 Td
+(Contact and Message models, and chats/show.blade.php, you understand most of this) Tj
+0 -13 Td
+(application.) Tj
+ET
+BT
+/F1 9 Tf
+1 0 0 1 46 24 Tm
+(Page 26 of 26) Tj
+ET
+endstream
+endobj
+55 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 54 0 R >>
+endobj
+xref
+0 56
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000295 00000 n 
+0000000363 00000 n 
+0000002939 00000 n 
+0000003065 00000 n 
+0000005571 00000 n 
+0000005697 00000 n 
+0000007660 00000 n 
+0000007786 00000 n 
+0000010950 00000 n 
+0000011078 00000 n 
+0000013482 00000 n 
+0000013610 00000 n 
+0000015841 00000 n 
+0000015969 00000 n 
+0000018471 00000 n 
+0000018599 00000 n 
+0000020523 00000 n 
+0000020651 00000 n 
+0000022831 00000 n 
+0000022959 00000 n 
+0000024707 00000 n 
+0000024835 00000 n 
+0000026753 00000 n 
+0000026881 00000 n 
+0000028895 00000 n 
+0000029023 00000 n 
+0000030997 00000 n 
+0000031125 00000 n 
+0000033109 00000 n 
+0000033237 00000 n 
+0000035269 00000 n 
+0000035397 00000 n 
+0000037140 00000 n 
+0000037268 00000 n 
+0000038820 00000 n 
+0000038948 00000 n 
+0000040893 00000 n 
+0000041021 00000 n 
+0000042825 00000 n 
+0000042953 00000 n 
+0000044715 00000 n 
+0000044843 00000 n 
+0000047024 00000 n 
+0000047152 00000 n 
+0000049320 00000 n 
+0000049448 00000 n 
+0000051539 00000 n 
+0000051667 00000 n 
+0000053531 00000 n 
+0000053659 00000 n 
+0000055738 00000 n 
+0000055866 00000 n 
+0000056889 00000 n 
+trailer
+<< /Size 56 /Root 1 0 R >>
+startxref
+57017
+%%EOF

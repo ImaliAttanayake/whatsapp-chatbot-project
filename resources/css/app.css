@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --slt-primary: #2258a7;
+  --slt-primary-600: #1c4b8f;
+  --slt-primary-700: #163e77;
+  --slt-info: #46b6ef;
+  --slt-accent: #5fb545;
+  --slt-white: #ffffff;
+  --slt-ink: #0c1b2a;
+  --slt-muted: #6b7a8a;
+  --slt-border: #e6eef8;
+  --slt-shadow: 0 12px 26px rgba(0,0,0,.10);
+  --slt-focus: 0 0 0 .25rem rgba(34,88,167,.25);
+  --slt-radius-lg: 16px;
+  --slt-radius-md: 12px;
+}
+
+/* Dark theme background */
+.bg-slt-dark {
+  background-color: var(--slt-ink);
+}
+
+/* Custom scrollbar for dark theme */
+.scrollbar-dark::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Stable scroll behavior for the left contacts list */
+.chat-list-scroll {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.chat-needs-human-badge {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chat-needs-human-badge.is-expiring {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+/* Keep chat layout at a deterministic viewport-based height */
+.chat-shell-height {
+  height: calc(100vh - 96px);
+  height: calc(100dvh - 96px);
+}
+
+/* Gradient header for modals */
+.gradient-header {
+  background: linear-gradient(135deg, var(--slt-primary) 0%, var(--slt-info) 50%, var(--slt-accent) 100%);
+}
+
+/* Status indicator animation */
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(95, 181, 69, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(95, 181, 69, 0);
+  }
+}
+
+.status-online {
+  animation: pulse-green 2s infinite;
+}
+
+/* Chat message styles */
+.message-incoming {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-outgoing {
+  background-color: var(--slt-primary);
+  color: white;
+}
+
+/* Button hover effects */
+.btn-slt-primary {
+  background-color: var(--slt-accent);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-slt-primary:hover {
+  background-color: #4da038;
+  transform: translateY(-1px);
+}
+
+/* Focus styles */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--slt-primary);
+  box-shadow: var(--slt-focus);
+}
+
+/* Card styles for dark theme */
+.card-dark {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--slt-radius-lg);
+}

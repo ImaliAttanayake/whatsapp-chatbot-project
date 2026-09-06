@@ -52,6 +52,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/chats/{contact}/handoff/resolve', [ChatApiController::class, 'resolveHandoff'])->name('chats.handoff.resolve');
     Route::post('/chats/{contact}/handoff/reset', [ChatApiController::class, 'resetHandoff'])->name('chats.handoff.reset');
 
+    // Queue & capacity status dashboard endpoint
+    Route::get('/api/queue/status', [ChatApiController::class, 'queueStatus'])->name('api.queue.status');
+
     // Logs page
     Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
 });

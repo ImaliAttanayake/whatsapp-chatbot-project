@@ -17,3 +17,9 @@ Schedule::command('whatsapp:sync-contacts', [
 ])
     ->withoutOverlapping(15)
     ->everyMinute();
+
+// Reassign chats with 5+ minutes of customer/agent inactivity, every minute
+Schedule::command('chats:reassign-inactive-agent-chats')
+    ->withoutOverlapping(15)
+    ->everyMinute();
+

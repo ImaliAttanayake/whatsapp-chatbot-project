@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -30,6 +31,7 @@ class Contact extends Model
         'human_handoff_assigned_user_id',
         'assigned_agent_id',
         'human_handoff_assigned_at',
+        'assigned_agent_id',
         'locked_by_user_id',
         'locked_at',
     ];
@@ -113,6 +115,11 @@ class Contact extends Model
     public function lockedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'locked_by_user_id');
+    }
+
+    public function assignedAgent(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_agent_id');
     }
 
     public function humanHandoffAssignedTo(): BelongsTo

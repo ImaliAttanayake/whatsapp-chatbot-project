@@ -14,7 +14,7 @@ class ContactController extends Controller
     private const SYNC_RECENT_FALLBACK_LIMIT = 40;
     private const SYNC_RECENT_MAX_LIMIT = 200;
 
-    public function store(Request $request)
+    public function store(Request $request, RoundRobinAssignmentService $assignment)
     {
         $data = $request->validate([
             'name' => ['nullable','string','max:80'],
@@ -33,6 +33,7 @@ class ContactController extends Controller
             ['name' => $data['name'] ?: $data['mobile']]
         );
 
+<<<<<<< HEAD
         // If contact is not yet assigned, attempt assignment or push to chat queue
         if (!$contact->assigned_agent_id) {
             $assignmentService = app(RoundRobinAssignmentService::class);
@@ -47,6 +48,10 @@ class ContactController extends Controller
                     ]
                 );
             }
+=======
+        if ($contact->wasRecentlyCreated) {
+            $assignment->assignIfUnassigned($contact);
+>>>>>>> 266c7ae6e676e57dab7f1f2bf7b346745e5a1e4c
         }
 
         return redirect()->route('chats.index')->with('status', 'Contact saved.');
